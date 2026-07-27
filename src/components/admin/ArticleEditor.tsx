@@ -308,7 +308,11 @@ export default function ArticleEditor({ initialData }: ArticleEditorProps) {
 
             <div>
               <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
-                Body Content<RichEditor value={formData.body} onChange={(html) => setFormData(prev => ({ ...prev, body: html }))} />rs text-sm font-sans"
+                Article Body
+              </label>
+              <RichEditor
+                value={formData.body}
+                onChange={(html) => setFormData(prev => ({ ...prev, body: html }))}
               />
             </div>
           </div>
