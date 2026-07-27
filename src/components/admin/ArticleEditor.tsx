@@ -55,7 +55,8 @@ export default function ArticleEditor({ initialData }: ArticleEditorProps) {
     is_featured: false,
     is_breaking: false,
     is_editors_pick: false,
-    scheduled_at: ''
+    scheduled_at: '',
+    youtube_video_id: ''
   })
 
   const [loading, setLoading] = useState(false)
@@ -84,7 +85,8 @@ export default function ArticleEditor({ initialData }: ArticleEditorProps) {
         is_editors_pick: !!initialData.is_editors_pick,
         scheduled_at: initialData.scheduled_at 
           ? new Date(initialData.scheduled_at).toISOString().slice(0, 16)
-          : ''
+          : '',
+        youtube_video_id: initialData.youtube_video_id || ''
       })
       setSlugManual(true)
     }
@@ -147,7 +149,8 @@ export default function ArticleEditor({ initialData }: ArticleEditorProps) {
       is_breaking: formData.is_breaking,
       is_editors_pick: formData.is_editors_pick,
       scheduled_at: formData.scheduled_at ? new Date(formData.scheduled_at).toISOString() : null,
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
+      youtube_video_id: formData.youtube_video_id || null
     }
 
     if (finalStatus === 'published') {
@@ -332,6 +335,34 @@ export default function ArticleEditor({ initialData }: ArticleEditorProps) {
                 placeholder="https://images.unsplash.com/... or a public upload link"
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-slate-700 bg-transparent dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors text-sm"
               />
+            </div>
+
+
+            {/* YouTube Video ID */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                YouTube Video ID <span className="text-gray-400 font-normal normal-case">(optional)</span>
+              </label>
+              <input
+                type="text"
+                value={formData.youtube_video_id}
+                onChange={(e) => setFormData(prev => ({ ...prev, youtube_video_id: e.target.value }))}
+                placeholder="e.g. dQw4w9WgXcQ"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-slate-700 bg-transparent dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm transition-colors"
+              />
+              <p className="text-xs text-gray-400 mt-1">Paste just the video ID from youtube.com/watch?v=<strong>ID</strong></p>
+              {formData.youtube_video_id && (
+                <div className="mt-3 rounded-lg overflow-hidden border border-gray-200 dark:border-slate-700">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://img.youtube.com/vi/${formData.youtube_video_id}/hqdefault.jpg`}
+                    alt="YouTube thumbnail preview"
+                    className="w-full h-auto"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
+                  <p className="text-xs text-center text-gray-400 py-1.5">Thumbnail preview</p>
+                </div>
+              )}
             </div>
 
             <div>
