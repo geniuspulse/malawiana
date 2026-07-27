@@ -4,6 +4,7 @@ import BreakingNewsTicker from '@/components/BreakingNewsTicker'
 import NewsletterSignup from '@/components/NewsletterSignup'
 import Link from 'next/link'
 import { ArrowRight, TrendingUp, Star, BookOpen } from 'lucide-react'
+import AdRenderer from '@/components/AdRenderer'
 
 export const revalidate = 60
 
@@ -36,6 +37,7 @@ export default async function HomePage() {
   return (
     <div>
       <BreakingNewsTicker />
+      <AdRenderer placement="header" className="max-w-7xl mx-auto px-4 mt-2" />
 
       {/* HERO SECTION */}
       {hero && (
@@ -94,13 +96,8 @@ export default async function HomePage() {
               {trendingArticles.length === 0 && <p className="text-gray-400 text-sm">Stories loading soon...</p>}
             </div>
 
-            {/* Ad placeholder */}
-            <div className="mt-8 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
-              <p className="text-xs text-gray-400 uppercase tracking-wide font-semibold">Advertisement</p>
-              <div className="mt-2 h-32 bg-gray-50 dark:bg-slate-800 rounded flex items-center justify-center">
-                <span className="text-xs text-gray-300">300 × 250</span>
-              </div>
-            </div>
+            {/* Live Ad Slot - Sidebar */}
+            <AdRenderer placement="sidebar" className="mt-8" />
           </div>
         </div>
       </section>
@@ -166,3 +163,4 @@ export default async function HomePage() {
     </div>
   )
 }
+
