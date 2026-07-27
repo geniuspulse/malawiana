@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { ArrowLeft, Save, Sparkles, AlertCircle, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
+import RichEditor from './RichEditor'
 import { Article } from '@/types'
 
 const CATEGORIES = [
@@ -307,15 +308,7 @@ export default function ArticleEditor({ initialData }: ArticleEditorProps) {
 
             <div>
               <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
-                Body Content
-              </label>
-              <textarea
-                required
-                value={formData.body}
-                onChange={(e) => setFormData(prev => ({ ...prev, body: e.target.value }))}
-                placeholder="Write the full report here. Support formatting using custom markup if needed."
-                rows={18}
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 bg-transparent dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors text-sm font-sans"
+                Body Content<RichEditor value={formData.body} onChange={(html) => setFormData(prev => ({ ...prev, body: html }))} />rs text-sm font-sans"
               />
             </div>
           </div>
