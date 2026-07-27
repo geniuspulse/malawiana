@@ -19,6 +19,7 @@ export interface Article {
   views?: number
   scheduled_at?: string | null
   published_at?: string | null
+  youtube_video_id?: string | null
   created_at?: string
   updated_at?: string
 }
