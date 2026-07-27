@@ -1,13 +1,15 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { LayoutDashboard, FileText, Mail, MessageSquare, LogOut, Menu, X, ChevronRight } from 'lucide-react'
+import { LayoutDashboard, FileText, Mail, MessageSquare, LogOut, Menu, X, ChevronRight, Megaphone } from 'lucide-react'
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: <LayoutDashboard size={18} />, exact: true },
-  { href: '/admin/articles', label: 'Articles', icon: <FileText size={18} /> },
+  { href: '/admin/articles', label: 'Posts', icon: <FileText size={18} /> },
+  { href: '/admin/ads', label: 'Ads', icon: <Megaphone size={18} /> },
   { href: '/admin/subscribers', label: 'Subscribers', icon: <Mail size={18} /> },
   { href: '/admin/messages', label: 'Messages', icon: <MessageSquare size={18} /> },
 ]
@@ -32,7 +34,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       else setChecking(false)
     }).catch(() => { clearTimeout(timeout); router.replace('/admin/login') })
     return () => clearTimeout(timeout)
-  }, [isPublicPage])
+  }, [isPublicPage, router])
 
   if (isPublicPage) return <>{children}</>
   if (checking) return (
@@ -50,7 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="h-16 flex items-center justify-between px-6 border-b border-gray-200 dark:border-slate-700">
           <div>
             <p className="font-black text-blue-600 tracking-tight text-lg">MALAWI<span className="text-red-500">ANA</span></p>
-            <p className="text-xs text-gray-400">Editorial Dashboard</p>
+            <p className="text-xs text-gray-400">Blog Dashboard</p>
           </div>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-gray-500"><X size={18} /></button>
         </div>
@@ -76,8 +78,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-gray-500"><Menu size={22} /></button>
           <div className="hidden lg:block" />
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold">E</div>
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:block">Editor</span>
+            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold">A</div>
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:block">Admin</span>
           </div>
         </header>
         <main className="flex-1 p-6 max-w-7xl w-full mx-auto">{children}</main>
