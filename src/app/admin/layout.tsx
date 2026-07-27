@@ -12,15 +12,19 @@ const navItems = [
   { href: '/admin/messages', label: 'Messages', icon: <MessageSquare size={18} /> },
 ]
 
+// Pages that don't need auth
+const PUBLIC_ADMIN_PATHS = ['/admin/login', '/admin/forgot-password', '/admin/reset-password']
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
   const [checking, setChecking] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const isLoginPage = pathname === '/admin/login'
+
+  const isPublicPage = PUBLIC_ADMIN_PATHS.includes(pathname)
 
   useEffect(() => {
-    if (isLoginPage) { setChecking(false); return }
+    if (isPublicPage) { setChecking(false); return }
     const timeout = setTimeout(() => router.replace('/admin/login'), 5000)
     supabase.auth.getSession().then(({ data: { session } }) => {
       clearTimeout(timeout)
@@ -28,9 +32,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       else setChecking(false)
     }).catch(() => { clearTimeout(timeout); router.replace('/admin/login') })
     return () => clearTimeout(timeout)
-  }, [isLoginPage])
+  }, [isPublicPage])
 
-  if (isLoginPage) return <>{children}</>
+  if (isPublicPage) return <>{children}</>
   if (checking) return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-slate-50 dark:bg-slate-950">
       <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
