@@ -5,6 +5,8 @@ import ArticleCard from '@/components/ArticleCard'
 import type { Metadata } from 'next'
 import { Clock, Calendar, User, Share2, Bookmark, Tag } from 'lucide-react'
 import Link from 'next/link'
+import AdRenderer from '@/components/AdRenderer'
+import YouTubeEmbed from '@/components/YouTubeEmbed'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { data: article } = await supabase.from('malawiana_articles').select('title, summary, featured_image, category, author_name, published_at').eq('slug', params.slug).single()
@@ -78,8 +80,21 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         </div>
       )}
 
+      {/* YouTube embed if video ID set */}
+      {article.youtube_video_id && (
+        <div className="mb-8">
+          <YouTubeEmbed videoId={article.youtube_video_id} title={article.title} />
+        </div>
+      )}
+
+      {/* In-article ad */}
+      <AdRenderer placement="in-article" className="my-6" />
+
       {/* Article body */}
       <div className="article-body prose max-w-none" dangerouslySetInnerHTML={{ __html: article.body || '<p>Content loading...</p>' }} />
+
+      {/* In-article ad - bottom */}
+      <AdRenderer placement="in-article" className="my-6" />
 
       {/* Tags */}
       {article.tags && article.tags.length > 0 && (
@@ -103,6 +118,9 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         </div>
       )}
 
+      {/* Sidebar ad */}
+      <AdRenderer placement="sidebar" className="my-8" />
+
       {/* Related articles */}
       {related && related.length > 0 && (
         <section className="mt-12 pt-8 border-t border-gray-200 dark:border-slate-700">
@@ -115,3 +133,4 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     </article>
   )
 }
+
