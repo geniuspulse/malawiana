@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
   const projectRef = 'pfbaepibelomiutlotkn'
   const results: string[] = []
-  const passwords = ['Arthur@472003', 'postgres']
+  const passwords = ['Arthur@472003Chibondo']
   
   const hosts = [
     { type: 'direct', host: `db.${projectRef}.supabase.co`, port: 5432, user: 'postgres' },
