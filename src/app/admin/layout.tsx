@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { LayoutDashboard, FileText, Mail, MessageSquare, LogOut, Menu, X, ChevronRight, Megaphone } from 'lucide-react'
+import { LayoutDashboard, FileText, Mail, MessageSquare, LogOut, Menu, X, ChevronRight, Megaphone, BarChart3 } from 'lucide-react'
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: <LayoutDashboard size={18} />, exact: true },
   { href: '/admin/articles', label: 'Posts', icon: <FileText size={18} /> },
+  { href: '/admin/analytics', label: 'Analytics', icon: <BarChart3 size={18} /> },
   { href: '/admin/ads', label: 'Ads', icon: <Megaphone size={18} /> },
   { href: '/admin/subscribers', label: 'Subscribers', icon: <Mail size={18} /> },
   { href: '/admin/messages', label: 'Messages', icon: <MessageSquare size={18} /> },

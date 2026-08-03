@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import ThemeProvider from '@/components/ThemeProvider'
 import AdRenderer from '@/components/AdRenderer'
 import { AuthProvider } from '@/lib/auth-context'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -41,7 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </ThemeProvider>
         </AuthProvider>
-      </body>
+            <Analytics />
+    </body>
     </html>
   )
 }

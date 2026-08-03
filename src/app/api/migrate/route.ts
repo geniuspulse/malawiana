@@ -84,6 +84,22 @@ ALTER TABLE malawiana_articles ADD COLUMN IF NOT EXISTS cover_image text;
 ALTER TABLE malawiana_articles ADD COLUMN IF NOT EXISTS reading_time int DEFAULT 5;
 ALTER TABLE malawiana_articles ADD COLUMN IF NOT EXISTS likes_count int DEFAULT 0;
 
+-- Analytics table for per-article visitor tracking
+CREATE TABLE IF NOT EXISTS article_analytics (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  article_id uuid,
+  visitor_hash varchar(32),
+  referrer text,
+  user_agent text,
+  created_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE article_analytics ENABLE ROW LEVEL SECURITY;
+CREATE POLICY IF NOT EXISTS "analytics_service_role" ON article_analytics FOR ALL USING (true);
+CREATE INDEX IF NOT EXISTS idx_analytics_article_id ON article_analytics(article_id);
+CREATE INDEX IF NOT EXISTS idx_analytics_created_at ON article_analytics(created_at);
+CREATE INDEX IF NOT EXISTS idx_analytics_visitor_hash ON article_analytics(visitor_hash);
+
 -- Enable RLS
 ALTER TABLE writers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE writer_follows ENABLE ROW LEVEL SECURITY;
