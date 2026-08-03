@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${merriweather.variable}`}>
-      <body className="font-sans bg-white text-gray-900 dark:bg-slate-900 dark:text-gray-100 min-h-screen flex flex-col antialiased">
+      <body className="font-sans bg-white text-gray-900 dark:bg-slate-900 dark:text-gray-100 min-h-screen flex flex-col antialiased overflow-x-hidden">
         <AuthProvider>
           <ThemeProvider>
             <AdRenderer placement="header" />

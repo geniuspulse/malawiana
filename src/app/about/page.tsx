@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
-      <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-6">
+    <div className="max-w-3xl mx-auto px-4 py-10 sm:py-16">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-6">
         About Malawiana
       </h1>
 
@@ -33,8 +33,8 @@ export default function AboutPage() {
 
         <h2 className="text-xl font-bold mt-10 mb-4">How it works</h2>
         <div className="not-prose space-y-6">
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
               <Pen size={20} />
             </div>
             <div>
@@ -46,8 +46,8 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
               <Users size={20} />
             </div>
             <div>
@@ -59,8 +59,8 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
               <Sparkles size={20} />
             </div>
             <div>
@@ -72,8 +72,8 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 shrink-0">
               <Globe size={20} />
             </div>
             <div>

@@ -128,14 +128,15 @@ export default function WritePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       {/* Top bar */}
-      <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200 dark:border-slate-700">
-        <Link
-          href="/dashboard"
-          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-        >
-          <ArrowLeft size={16} /> Dashboard
-        </Link>
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-4 mb-8 pb-4 border-b border-gray-200 dark:border-slate-700">
+        <div className="flex items-center justify-between">
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+          >
+            <ArrowLeft size={16} /> Dashboard
+          </Link>
+          <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={() => setMode(mode === 'write' ? 'preview' : 'write')}
             className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1.5"
@@ -156,6 +157,7 @@ export default function WritePage() {
           >
             {saving ? 'Publishing...' : 'Publish'}
           </button>
+        </div>
         </div>
       </div>
 
@@ -207,7 +209,7 @@ export default function WritePage() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Title"
-            className="w-full text-4xl font-serif font-bold bg-transparent text-gray-900 dark:text-white placeholder-gray-300 dark:placeholder-slate-600 focus:outline-none mb-3"
+            className="w-full text-2xl sm:text-3xl md:text-4xl font-serif font-bold bg-transparent text-gray-900 dark:text-white placeholder-gray-300 dark:placeholder-slate-600 focus:outline-none mb-3"
           />
 
           {/* Subtitle */}
@@ -216,7 +218,7 @@ export default function WritePage() {
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             placeholder="Write a subtitle..."
-            className="w-full text-lg text-gray-500 dark:text-gray-400 bg-transparent placeholder-gray-300 dark:placeholder-slate-600 focus:outline-none mb-6"
+            className="w-full text-base sm:text-lg text-gray-500 dark:text-gray-400 bg-transparent placeholder-gray-300 dark:placeholder-slate-600 focus:outline-none mb-6"
           />
 
           {/* Rich editor */}
@@ -225,7 +227,7 @@ export default function WritePage() {
           </div>
 
           {/* Meta row */}
-          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-4">
+          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-4 overflow-x-auto">
             <div className="flex flex-wrap gap-4">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">

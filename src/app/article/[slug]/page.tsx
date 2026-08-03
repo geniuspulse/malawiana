@@ -80,7 +80,7 @@ export default async function ArticlePage({
     `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(authorName)}`
 
   return (
-    <article className="max-w-3xl mx-auto px-4 py-8">
+    <article className="max-w-3xl mx-auto px-4 py-6 sm:py-8">
       <ArticleViewTracker slug={article.slug} />
 
       {/* Back link */}
@@ -102,13 +102,13 @@ export default async function ArticlePage({
       </div>
 
       {/* Title */}
-      <h1 className="text-3xl md:text-5xl font-serif font-bold leading-tight text-gray-900 dark:text-white mb-4">
+      <h1 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold leading-tight text-gray-900 dark:text-white mb-3 sm:mb-4">
         {article.title}
       </h1>
 
       {/* Subtitle/summary */}
       {article.summary && (
-        <p className="text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-6 font-medium">
+        <p className="text-lg sm:text-xl text-gray-500 dark:text-gray-400 leading-relaxed mb-5 sm:mb-6 font-medium">
           {article.summary}
         </p>
       )}
@@ -162,9 +162,9 @@ export default async function ArticlePage({
       )}
 
       {/* Article body */}
-      <div className="overflow-x-auto">
+      <div className="overflow-hidden">
         <div
-          className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-a:text-emerald-600 prose-img:rounded-xl prose-img:max-w-full prose-table:w-full"
+          className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-a:text-emerald-600 prose-img:rounded-xl prose-img:max-w-full prose-table:w-full prose-table:overflow-x-auto"
           dangerouslySetInnerHTML={{ __html: article.body || '' }}
         />
       </div>
@@ -189,14 +189,14 @@ export default async function ArticlePage({
 
       {/* Author bio box */}
       {writerProfile && (
-        <div className="mt-10 p-6 bg-gray-50 dark:bg-slate-800/50 rounded-2xl flex items-start gap-4">
+        <div className="mt-8 sm:mt-10 p-4 sm:p-6 bg-gray-50 dark:bg-slate-800/50 rounded-2xl flex items-start gap-3 sm:gap-4">
           <img
             src={
               writerProfile.avatar_url ||
               `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(authorName)}`
             }
             alt={authorName}
-            className="w-14 h-14 rounded-full shrink-0"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full shrink-0"
           />
           <div>
             <Link
@@ -221,8 +221,8 @@ export default async function ArticlePage({
       {/* Related articles */}
       {related && related.length > 0 && (
         <section className="mt-12 pt-8 border-t border-gray-200 dark:border-slate-700">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">More from {authorName}</h3>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">More from {authorName}</h3>
+          <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
             {related.map((a) => (
               <ArticleCard key={a.id} article={a} />
             ))}

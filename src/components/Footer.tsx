@@ -11,15 +11,15 @@ const links = [
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-950">
-      <div className="max-w-5xl mx-auto px-6 py-10">
-        <div className="flex flex-col sm:flex-row justify-between gap-8 mb-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+        <div className="flex flex-col gap-8 mb-8">
           <div className="max-w-xs">
             <p className="font-serif font-black text-xl text-gray-900 dark:text-white mb-2">Malawiana</p>
             <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
               An open writing platform where Malawian voices are heard. Write, read, and earn from your stories.
             </p>
           </div>
-          <div className="flex gap-12">
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-12">
             <div>
               <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Platform</p>
               <div className="flex flex-col gap-2">

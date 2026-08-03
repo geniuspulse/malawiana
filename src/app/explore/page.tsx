@@ -56,8 +56,8 @@ export default async function ExplorePage({
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-serif font-black text-gray-900 dark:text-white mb-2">
+    <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12">
+      <h1 className="text-3xl sm:text-4xl font-serif font-black text-gray-900 dark:text-white mb-2">
         {selectedCategory
           ? TOPICS.find((t) => t.slug === selectedCategory)?.name || selectedCategory
           : searchQuery

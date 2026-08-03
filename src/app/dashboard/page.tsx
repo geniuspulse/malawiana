@@ -92,8 +92,8 @@ export default function DashboardPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+        <div className="flex items-center gap-3 sm:gap-4">
           <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-100 dark:bg-slate-800 border-2 border-emerald-600/20">
             <img
               src={writer.avatar_url || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(writer.display_name)}`}
@@ -110,18 +110,18 @@ export default function DashboardPage() {
         </div>
         <Link
           href="/write"
-          className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
+          className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-colors w-full sm:w-auto justify-center"
         >
           <Plus size={16} /> Write a Story
         </Link>
       </div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-5"
+            className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-4 sm:p-5"
           >
             <div className="flex items-center gap-2 text-emerald-600 mb-2">
               {stat.icon}
@@ -133,7 +133,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Earnings section */}
-      <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/30 rounded-xl p-6 mb-8">
+      <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/30 rounded-xl p-4 sm:p-6 mb-6 sm:mb-8">
         <div className="flex items-center gap-3 mb-3">
           <Wallet size={20} className="text-emerald-600" />
           <h3 className="font-semibold text-gray-900 dark:text-white">Earnings</h3>
@@ -173,7 +173,7 @@ export default function DashboardPage() {
           {stories.map((story) => (
             <div
               key={story.id}
-              className="flex items-center justify-between gap-4 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-4 hover:shadow-sm transition-shadow"
+              className="flex items-center justify-between gap-2 sm:gap-4 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-3 sm:p-4 hover:shadow-sm transition-shadow"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">

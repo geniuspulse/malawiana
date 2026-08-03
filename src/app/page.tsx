@@ -63,12 +63,12 @@ export default async function HomePage() {
   return (
     <div className="bg-white dark:bg-slate-900">
       {/* 1. HERO SECTION */}
-      <section className="border-b border-gray-150 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-950/20 py-16 md:py-24">
+      <section className="border-b border-gray-150 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-950/20 py-10 sm:py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-serif font-black tracking-tight text-gray-950 dark:text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-black tracking-tight text-gray-950 dark:text-white mb-4 sm:mb-6">
             Malawiana
           </h1>
-          <p className="text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
             Stories from the heart of Malawi. Join our open writing platform to read, write, and earn from your perspectives.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -110,12 +110,12 @@ export default async function HomePage() {
       </section>
 
       {/* 3. MAIN CONTENT: FEED + SIDEBAR */}
-      <section className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-12 gap-12">
+      <section className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Main Feed (Left) */}
           <div className="lg:col-span-8">
             <div className="flex items-center justify-between mb-8 border-b border-gray-100 dark:border-slate-800/85 pb-4">
-              <h2 className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white flex items-center gap-2">
                 <BookOpen size={18} className="text-emerald-600" />
                 Latest Stories
               </h2>
@@ -181,7 +181,7 @@ export default async function HomePage() {
               <div className="space-y-5">
                 {activeWriters.map((wt) => (
                   <div key={wt.id} className="flex items-center justify-between gap-4">
-                    <Link href={`/writer/${wt.username}`} className="flex items-center gap-3 group shrink-0 max-w-[70%]">
+                    <Link href={`/writer/${wt.username}`} className="flex items-center gap-3 group shrink-0 max-w-[75%] sm:max-w-[70%]">
                       <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 dark:bg-slate-800 shrink-0 border border-gray-150 dark:border-slate-800">
                         <img 
                           src={wt.avatar_url || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(wt.display_name)}`} 
