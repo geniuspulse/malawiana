@@ -50,9 +50,9 @@ export async function POST(req: NextRequest) {
             created_at timestamptz DEFAULT now(), updated_at timestamptz DEFAULT now()
           );
           ALTER TABLE writers ENABLE ROW LEVEL SECURITY;
-          CREATE POLICY IF NOT EXISTS "writers_public_read" ON writers FOR SELECT USING (true);
-          CREATE POLICY IF NOT EXISTS "writers_self_insert" ON writers FOR INSERT WITH CHECK (auth.uid() = user_id);
-          CREATE POLICY IF NOT EXISTS "writers_self_update" ON writers FOR UPDATE USING (auth.uid() = user_id);
+          DROP POLICY IF EXISTS "writers_public_read" ON writers; CREATE POLICY "writers_public_read" ON writers FOR SELECT USING (true);
+          DROP POLICY IF EXISTS "writers_self_insert" ON writers; CREATE POLICY "writers_self_insert" ON writers FOR INSERT WITH CHECK (auth.uid() = user_id);
+          DROP POLICY IF EXISTS "writers_self_update" ON writers; CREATE POLICY "writers_self_update" ON writers FOR UPDATE USING (auth.uid() = user_id);
 
           CREATE TABLE IF NOT EXISTS writer_follows (
             id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -60,9 +60,9 @@ export async function POST(req: NextRequest) {
             created_at timestamptz DEFAULT now(), UNIQUE(follower_id, writer_id)
           );
           ALTER TABLE writer_follows ENABLE ROW LEVEL SECURITY;
-          CREATE POLICY IF NOT EXISTS "follows_public_read" ON writer_follows FOR SELECT USING (true);
-          CREATE POLICY IF NOT EXISTS "follows_self_insert" ON writer_follows FOR INSERT WITH CHECK (auth.uid() = follower_id);
-          CREATE POLICY IF NOT EXISTS "follows_self_delete" ON writer_follows FOR DELETE USING (auth.uid() = follower_id);
+          DROP POLICY IF EXISTS "follows_public_read" ON writer_follows; CREATE POLICY "follows_public_read" ON writer_follows FOR SELECT USING (true);
+          DROP POLICY IF EXISTS "follows_self_insert" ON writer_follows; CREATE POLICY "follows_self_insert" ON writer_follows FOR INSERT WITH CHECK (auth.uid() = follower_id);
+          DROP POLICY IF EXISTS "follows_self_delete" ON writer_follows; CREATE POLICY "follows_self_delete" ON writer_follows FOR DELETE USING (auth.uid() = follower_id);
 
           CREATE TABLE IF NOT EXISTS malawiana_likes (
             id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -70,9 +70,9 @@ export async function POST(req: NextRequest) {
             created_at timestamptz DEFAULT now(), UNIQUE(article_id, user_id)
           );
           ALTER TABLE malawiana_likes ENABLE ROW LEVEL SECURITY;
-          CREATE POLICY IF NOT EXISTS "likes_public_read" ON malawiana_likes FOR SELECT USING (true);
-          CREATE POLICY IF NOT EXISTS "likes_self_insert" ON malawiana_likes FOR INSERT WITH CHECK (auth.uid() = user_id);
-          CREATE POLICY IF NOT EXISTS "likes_self_delete" ON malawiana_likes FOR DELETE USING (auth.uid() = user_id);
+          DROP POLICY IF EXISTS "likes_public_read" ON malawiana_likes; CREATE POLICY "likes_public_read" ON malawiana_likes FOR SELECT USING (true);
+          DROP POLICY IF EXISTS "likes_self_insert" ON malawiana_likes; CREATE POLICY "likes_self_insert" ON malawiana_likes FOR INSERT WITH CHECK (auth.uid() = user_id);
+          DROP POLICY IF EXISTS "likes_self_delete" ON malawiana_likes; CREATE POLICY "likes_self_delete" ON malawiana_likes FOR DELETE USING (auth.uid() = user_id);
 
           CREATE TABLE IF NOT EXISTS malawiana_comments (
             id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -82,9 +82,9 @@ export async function POST(req: NextRequest) {
             created_at timestamptz DEFAULT now()
           );
           ALTER TABLE malawiana_comments ENABLE ROW LEVEL SECURITY;
-          CREATE POLICY IF NOT EXISTS "comments_public_read" ON malawiana_comments FOR SELECT USING (is_hidden = false);
-          CREATE POLICY IF NOT EXISTS "comments_self_insert" ON malawiana_comments FOR INSERT WITH CHECK (auth.uid() = user_id);
-          CREATE POLICY IF NOT EXISTS "comments_self_delete" ON malawiana_comments FOR DELETE USING (auth.uid() = user_id);
+          DROP POLICY IF EXISTS "comments_public_read" ON malawiana_comments; CREATE POLICY "comments_public_read" ON malawiana_comments FOR SELECT USING (is_hidden = false);
+          DROP POLICY IF EXISTS "comments_self_insert" ON malawiana_comments; CREATE POLICY "comments_self_insert" ON malawiana_comments FOR INSERT WITH CHECK (auth.uid() = user_id);
+          DROP POLICY IF EXISTS "comments_self_delete" ON malawiana_comments; CREATE POLICY "comments_self_delete" ON malawiana_comments FOR DELETE USING (auth.uid() = user_id);
 
           CREATE TABLE IF NOT EXISTS article_analytics (
             id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
             created_at timestamptz DEFAULT now()
           );
           ALTER TABLE article_analytics ENABLE ROW LEVEL SECURITY;
-          CREATE POLICY IF NOT EXISTS "analytics_service_role" ON article_analytics FOR ALL USING (true);
+          DROP POLICY IF EXISTS "analytics_service_role" ON article_analytics; CREATE POLICY "analytics_service_role" ON article_analytics FOR ALL USING (true);
           CREATE INDEX IF NOT EXISTS idx_analytics_article_id ON article_analytics(article_id);
           CREATE INDEX IF NOT EXISTS idx_analytics_created_at ON article_analytics(created_at);
           CREATE INDEX IF NOT EXISTS idx_analytics_visitor_hash ON article_analytics(visitor_hash);
