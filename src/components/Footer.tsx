@@ -1,28 +1,49 @@
 import Link from 'next/link'
 
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/explore', label: 'Explore' },
+  { href: '/about', label: 'About' },
+  { href: '/auth', label: 'Write for Us' },
+  { href: '/contact', label: 'Contact' },
+]
+
 export default function Footer() {
-  const year = new Date().getFullYear()
   return (
-    <footer className="bg-slate-950 text-gray-450 border-t border-slate-900 mt-20">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 border-b border-slate-900 pb-8">
-          <div>
-            <div className="text-xl font-serif font-black text-white mb-2">Malawiana</div>
-            <p className="text-sm text-gray-400">"A platform where Malawian voices are heard."</p>
+    <footer className="border-t border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-950">
+      <div className="max-w-5xl mx-auto px-6 py-10">
+        <div className="flex flex-col sm:flex-row justify-between gap-8 mb-8">
+          <div className="max-w-xs">
+            <p className="font-serif font-black text-xl text-gray-900 dark:text-white mb-2">Malawiana</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+              An open writing platform where Malawian voices are heard. Write, read, and earn from your stories.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <Link href="/about" className="hover:text-white transition-colors">About</Link>
-            <Link href="/explore" className="hover:text-white transition-colors">Explore</Link>
-            <Link href="/auth" className="hover:text-white transition-colors">Become a Writer</Link>
-            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+          <div className="flex gap-12">
+            <div>
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Platform</p>
+              <div className="flex flex-col gap-2">
+                {links.map((l) => (
+                  <Link key={l.href} href={l.href} className="text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 transition-colors">
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Writers</p>
+              <div className="flex flex-col gap-2">
+                <Link href="/write" className="text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 transition-colors">Start Writing</Link>
+                <Link href="/dashboard" className="text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 transition-colors">Dashboard</Link>
+                <Link href="/admin" className="text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 transition-colors">Admin</Link>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>© {year} Malawiana. All rights reserved. Stories from Malawi.</p>
-          <div className="flex gap-4">
-            <Link href="/admin/login" className="hover:text-gray-400 transition-colors">Platform Admin</Link>
-          </div>
+        <div className="border-t border-gray-200 dark:border-slate-800 pt-6 text-center">
+          <p className="text-xs text-gray-400 dark:text-gray-500">
+            © {new Date().getFullYear()} Malawiana. A platform for Malawian voices. 🇲🇼
+          </p>
         </div>
       </div>
     </footer>
