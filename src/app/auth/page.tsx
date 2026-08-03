@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { acmSupabase } from '@/lib/acm-supabase'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
 import { Mail, Lock, User as UserIcon, AlertCircle, Sparkles, Globe } from 'lucide-react'
@@ -31,8 +30,8 @@ export default function AuthPage() {
 
     try {
       if (isSignUp) {
-        // Sign Up via ACM Supabase (shared auth)
-        const { data, error } = await acmSupabase.auth.signUp({
+        // Sign Up
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
@@ -45,8 +44,8 @@ export default function AuthPage() {
         if (error) throw error
 
         if (data.user) {
-          // Also create a profile in the ACM Supabase user_profiles table
-          await acmSupabase.from('user_profiles').upsert({
+          // Create profile
+          await supabase.from('user_profiles').upsert({
             id: data.user.id,
             display_name: displayName,
           })
@@ -58,8 +57,8 @@ export default function AuthPage() {
           }, 1500)
         }
       } else {
-        // Sign In via ACM Supabase
-        const { data, error } = await acmSupabase.auth.signInWithPassword({
+        // Sign In
+        const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         })
@@ -87,7 +86,7 @@ export default function AuthPage() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-gray-50 dark:bg-slate-950/20">
       <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-150 dark:border-slate-800 p-8">
-        {/* ACM branding header */}
+        {/* Malawiana branding header */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 mb-3">
             <div className="w-10 h-10 rounded-xl bg-gray-900 dark:bg-white flex items-center justify-center">
@@ -95,10 +94,10 @@ export default function AuthPage() {
             </div>
           </div>
           <p className="text-sm font-semibold text-gray-900 dark:text-white">
-            {isSignUp ? 'Create ACM Account' : 'Sign in to ACM Account'}
+            {isSignUp ? 'Create Malawiana Account' : 'Sign in to Malawiana'}
           </p>
           <p className="text-xs text-gray-400 mt-1">
-            One account for Malawiana, APM Chibondo & Afropartisan
+            Your Malawiana account
           </p>
         </div>
 
@@ -119,7 +118,7 @@ export default function AuthPage() {
           <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/30 rounded-lg flex items-start gap-3 text-emerald-600 dark:text-emerald-400 text-sm">
             <Sparkles size={18} className="shrink-0 mt-0.5 animate-pulse" />
             <div>
-              <p className="font-semibold">ACM Account Created!</p>
+              <p className="font-semibold">Malawiana Account Created!</p>
               <p className="text-xs mt-0.5">Redirecting you to onboarding...</p>
             </div>
           </div>
@@ -194,7 +193,7 @@ export default function AuthPage() {
             {authLoading ? (
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             ) : isSignUp ? (
-              'Create ACM Account'
+              'Create Malawiana Account'
             ) : (
               'Sign In'
             )}

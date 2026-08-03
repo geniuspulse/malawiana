@@ -1,7 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from './supabase'
-import { acmSupabase } from './acm-supabase'
 import type { User } from '@supabase/supabase-js'
 
 interface AuthContextType {
@@ -46,8 +45,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    // Use ACM Supabase for auth (shared across all ACM sites)
-    acmSupabase.auth.getSession().then(({ data: { session } }) => {
+    // Use Malawiana Supabase for auth
+    supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
       if (session?.user) {
         loadWriter(session.user.id)
@@ -57,7 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false)
     })
 
-    const { data: { subscription } } = acmSupabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
       if (session?.user) {
         loadWriter(session.user.id)
@@ -71,7 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const signOut = async () => {
-    await acmSupabase.auth.signOut()
+    await supabase.auth.signOut()
     setUser(null)
     setWriter(null)
   }
