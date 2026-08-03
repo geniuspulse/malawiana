@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { extractYouTubeId } from '@/lib/utils'
 import { ArrowLeft, Save, Sparkles, AlertCircle, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import RichEditor from './RichEditor'
@@ -376,16 +377,20 @@ export default function ArticleEditor({ initialData }: ArticleEditorProps) {
             {/* YouTube Video ID */}
             <div>
               <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
-                YouTube Video ID <span className="text-gray-400 font-normal normal-case">(optional)</span>
+                YouTube Video ID or URL <span className="text-gray-400 font-normal normal-case">(optional)</span>
               </label>
               <input
                 type="text"
                 value={formData.youtube_video_id}
-                onChange={(e) => setFormData(prev => ({ ...prev, youtube_video_id: e.target.value }))}
-                placeholder="e.g. dQw4w9WgXcQ"
+                onChange={(e) => {
+                    const val = e.target.value
+                    const extracted = extractYouTubeId(val)
+                    setFormData(prev => ({ ...prev, youtube_video_id: extracted || val }))
+                  }}
+                placeholder="e.g. dQw4w9WgXcQ or https://youtube.com/watch?v=..."
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-slate-700 bg-transparent dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm transition-colors"
               />
-              <p className="text-xs text-gray-400 mt-1">Paste just the video ID from youtube.com/watch?v=<strong>ID</strong></p>
+              <p className="text-xs text-gray-400 mt-1">Paste a YouTube URL or just the video ID. Both work.</p>
               {formData.youtube_video_id && (
                 <div className="mt-3 rounded-lg overflow-hidden border border-gray-200 dark:border-slate-700">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

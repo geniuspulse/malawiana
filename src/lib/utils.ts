@@ -15,3 +15,32 @@ export function timeAgo(date: string) {
   if (seconds < 86400) return `${Math.floor(seconds/3600)}h ago`
   return `${Math.floor(seconds/86400)}d ago`
 }
+
+export function extractYouTubeId(input: string): string | null {
+  if (!input) return null
+  const trimmed = input.trim()
+  
+  // Already a bare ID (11 chars, alphanumeric + dash + underscore)
+  if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed
+  
+  // Full YouTube URLs
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/,
+    /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+    /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+    /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+    /(?:youtube\.com\/v\/)([a-zA-Z0-9_-]{11})/,
+    /(?:youtube-nocookie\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+  ]
+  
+  for (const pattern of patterns) {
+    const match = trimmed.match(pattern)
+    if (match) return match[1]
+  }
+  
+  return null
+}
+
+export function youTubeIdToUrl(id: string): string {
+  return `https://www.youtube.com/watch?v=${id}`
+}

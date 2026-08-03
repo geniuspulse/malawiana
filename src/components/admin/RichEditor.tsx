@@ -1,4 +1,5 @@
 'use client'
+import { extractYouTubeId, youTubeIdToUrl } from '@/lib/utils'
 import { useEditor, EditorContent, BubbleMenu, FloatingMenu } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import ImageExt from '@tiptap/extension-image'
@@ -118,7 +119,10 @@ export default function RichEditor({ value, onChange, placeholder = 'Start writi
     } else if (modal.type === 'image') {
       editor.chain().focus().setImage({ src: modal.url.trim(), alt: modal.alt.trim() }).run()
     } else if (modal.type === 'youtube') {
-      editor.chain().focus().setYoutubeVideo({ src: modal.url.trim() }).run()
+      const input = modal.url.trim()
+      const videoId = extractYouTubeId(input)
+      const src = videoId ? youTubeIdToUrl(videoId) : input
+      editor.chain().focus().setYoutubeVideo({ src }).run()
     }
     closeModal()
   }
@@ -234,18 +238,18 @@ export default function RichEditor({ value, onChange, placeholder = 'Start writi
             <div className="space-y-3">
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
-                  {modal.type === 'youtube' ? 'YouTube URL' : 'URL'}
+                  {modal.type === 'youtube' ? 'YouTube URL or Video ID' : 'URL'}
                 </label>
                 <input
                   autoFocus
-                  type="url"
+                  type="text"
                   value={modal.url}
                   onChange={e => setModal(m => ({ ...m, url: e.target.value }))}
                   onKeyDown={e => e.key === 'Enter' && applyModal()}
                   placeholder={
                     modal.type === 'link' ? 'https://example.com' :
                     modal.type === 'image' ? 'https://example.com/image.jpg' :
-                    'https://youtube.com/watch?v=...'
+                    'https://youtube.com/watch?v=... or just the video ID (e.g. dQw4w9WgXcQ)'
                   }
                   className="w-full px-3 py-2.5 rounded-lg border border-gray-200 dark:border-slate-700 bg-transparent text-sm dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
