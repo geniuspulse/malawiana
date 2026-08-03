@@ -7,6 +7,7 @@ import { Clock, Calendar, User, Share2, Bookmark, Tag } from 'lucide-react'
 import Link from 'next/link'
 import AdRenderer from '@/components/AdRenderer'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
+import ArticleViewTracker from '@/components/ArticleViewTracker'
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { data: article } = await supabase.from('malawiana_articles').select('title, summary, featured_image, category, author_name, published_at').eq('slug', params.slug).single()
@@ -19,17 +20,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
   const { data: article } = await supabase.from('malawiana_articles').select('*').eq('slug', params.slug).eq('status', 'published').single()
   if (!article) notFound()
-
-  // Increment views
-  await supabase.from('malawiana_articles').update({ views: (article.views || 0) + 1 }).eq('id', article.id)
 
   const { data: related } = await supabase.from('malawiana_articles').select('*').eq('category', article.category).eq('status', 'published').neq('id', article.id).order('published_at', { ascending: false }).limit(4)
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-8">
+      <ArticleViewTracker slug={article.slug} />
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6 flex items-center gap-2">
         <Link href="/" className="hover:text-blue-600">Home</Link> <span>/</span>

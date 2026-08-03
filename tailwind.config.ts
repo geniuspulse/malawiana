@@ -6,11 +6,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'Cambria', 'Times New Roman', 'serif'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        brand: { 600: '#1a56db', 700: '#1e40af', 800: '#1e3a8a' },
+        brand: { 600: '#059669', 700: '#047857', 800: '#065f46' }, // emerald accents
       },
       animation: {
         marquee: 'marquee 30s linear infinite',
