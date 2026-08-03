@@ -1,6 +1,7 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from './supabase'
+import { acmSupabase } from './acm-supabase'
 import type { User } from '@supabase/supabase-js'
 
 interface AuthContextType {
@@ -26,18 +27,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const loadWriter = async (userId: string) => {
     try {
-      const { data, error } = await supabase
+      // Writer data lives in Malawiana's own Supabase
+      const { data } = await supabase
         .from('writers')
         .select('*')
         .eq('user_id', userId)
         .single()
-      if (data) {
-        setWriter(data)
-      } else {
-        setWriter(null)
-      }
+      setWriter(data || null)
     } catch (e) {
-      console.error('Error loading writer:', e)
       setWriter(null)
     }
   }
@@ -49,7 +46,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Use ACM Supabase for auth (shared across all ACM sites)
+    acmSupabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
       if (session?.user) {
         loadWriter(session.user.id)
@@ -59,7 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false)
     })
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = acmSupabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
       if (session?.user) {
         loadWriter(session.user.id)
@@ -73,7 +71,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    await acmSupabase.auth.signOut()
     setUser(null)
     setWriter(null)
   }

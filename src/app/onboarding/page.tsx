@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { acmSupabase } from '@/lib/acm-supabase'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
 import { BookOpen, User, Check, Edit2, ChevronRight, Sparkles, Award } from 'lucide-react'
@@ -63,7 +64,7 @@ export default function OnboardingPage() {
       if (!user) throw new Error('Not authenticated')
 
       // Save user metadata with selected topics
-      await supabase.auth.updateUser({
+      await acmSupabase.auth.updateUser({
         data: {
           onboarded: true,
           topics: selectedTopics,
