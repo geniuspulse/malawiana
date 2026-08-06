@@ -129,7 +129,7 @@ export default function WritePage() {
     <div className="max-w-3xl mx-auto px-4 py-8">
       {/* Top bar */}
       <div className="flex flex-col gap-4 mb-8 pb-4 border-b border-gray-200 dark:border-slate-700">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
             href="/dashboard"
             className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"

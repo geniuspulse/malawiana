@@ -17,11 +17,11 @@ export default function ArticleCard({ article, variant = 'default' }: Props) {
   const isVerified = article.is_verified || false
 
   return (
-    <div className="border-b border-gray-100 dark:border-gray-800/60 py-5 sm:py-6 last:border-b-0">
-      <Link href={`/article/${article.slug}`} className="group flex gap-3 sm:gap-6 justify-between items-start">
+    <div className="border-b border-gray-100 dark:border-gray-800/60 py-4 sm:py-6 last:border-b-0">
+      <Link href={`/article/${article.slug}`} className="group flex gap-2 sm:gap-6 justify-between items-start">
         <div className="flex-1 min-w-0">
           {/* Author row */}
-          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-2.5">
+          <div className="flex items-center gap-1 sm:gap-2 mb-1.5 sm:mb-2.5">
             <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden bg-gray-150 dark:bg-slate-800 shrink-0 border border-gray-100 dark:border-slate-800">
               <img src={authorAvatar} alt={authorName} className="w-full h-full object-cover" />
             </div>
@@ -44,7 +44,7 @@ export default function ArticleCard({ article, variant = 'default' }: Props) {
           </p>
 
           {/* Bottom row */}
-          <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs text-gray-400 dark:text-gray-500 font-medium flex-wrap">
+          <div className="flex items-center gap-1.5 sm:gap-3 text-[10px] sm:text-xs text-gray-400 dark:text-gray-500 font-medium flex-wrap">
             <span className="bg-gray-100 dark:bg-slate-800/80 px-2 sm:px-2.5 py-0.5 rounded-full capitalize text-gray-600 dark:text-gray-400">
               {article.category || 'General'}
             </span>
@@ -61,7 +61,7 @@ export default function ArticleCard({ article, variant = 'default' }: Props) {
 
         {/* Cover image thumbnail */}
         {coverImg && (
-          <div className="w-20 h-14 sm:w-36 sm:h-24 rounded-lg overflow-hidden bg-gray-100 dark:bg-slate-800 shrink-0 border border-gray-100 dark:border-slate-800">
+          <div className="w-16 h-12 sm:w-36 sm:h-24 rounded-lg overflow-hidden bg-gray-100 dark:bg-slate-800 shrink-0 border border-gray-100 dark:border-slate-800">
             <img
               src={coverImg}
               alt={article.title}

@@ -113,7 +113,7 @@ export default async function WriterProfilePage({
         )}
 
         {/* Stats */}
-        <div className="flex gap-6 mb-10 pb-6 border-b border-gray-200 dark:border-slate-700">
+        <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 pb-6 border-b border-gray-200 dark:border-slate-700">
           <div className="flex items-center gap-2 text-sm">
             <Users size={16} className="text-gray-400" />
             <span className="font-semibold text-gray-900 dark:text-white">{followerCount || 0}</span>

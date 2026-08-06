@@ -107,26 +107,26 @@ export default function AdminDashboardPage() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         {statCards.map((card) => (
-          <div key={card.label} className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-6 shadow-sm flex items-center gap-5">
-            <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/10 text-emerald-600 dark:text-emerald-400">{card.icon}</div>
+          <div key={card.label} className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-4 sm:p-6 shadow-sm flex items-center gap-3 sm:gap-5">
+            <div className="p-2 sm:p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/10 text-emerald-600 dark:text-emerald-400">{card.icon}</div>
             <div>
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{card.label}</p>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-1">{card.value}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mt-1">{card.value}</h3>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
         <div>
           <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
             <FileText size={18} className="text-emerald-600" /> Recent Stories
           </h2>
           <div className="space-y-3">
             {recentPosts.map((post) => (
-              <Link key={post.id} href={`/admin/articles/${post.id}`} className="flex items-center justify-between gap-4 p-4 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl hover:shadow-sm transition-shadow">
+              <Link key={post.id} href={`/admin/articles/${post.id}`} className="flex items-center justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl hover:shadow-sm transition-shadow">
                 <div className="min-w-0">
                   <h3 className="font-semibold text-gray-900 dark:text-white truncate">{post.title}</h3>
                   <div className="flex items-center gap-2 mt-1">

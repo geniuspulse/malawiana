@@ -173,7 +173,7 @@ export default function DashboardPage() {
           {stories.map((story) => (
             <div
               key={story.id}
-              className="flex items-center justify-between gap-2 sm:gap-4 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-3 sm:p-4 hover:shadow-sm transition-shadow"
+              className="flex items-center justify-between gap-2 sm:gap-4 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl p-2.5 sm:p-4 hover:shadow-sm transition-shadow"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
@@ -191,7 +191,7 @@ export default function DashboardPage() {
                 <h3 className="font-serif font-bold text-gray-900 dark:text-white truncate">
                   {story.title}
                 </h3>
-                <div className="flex items-center gap-3 text-xs text-gray-400 mt-1">
+                <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400 mt-1 flex-wrap">
                   <span className="flex items-center gap-1">
                     <Eye size={11} /> {story.views || 0}
                   </span>

@@ -140,7 +140,7 @@ export default async function HomePage() {
           </div>
 
           {/* Sidebar (Right) */}
-          <div className="lg:col-span-4 space-y-8 sm:space-y-12">
+          <div className="lg:col-span-4 space-y-6 sm:space-y-12">
             {/* Trending Sidebar */}
             {trendingArticles.length > 0 && (
               <div>
@@ -150,7 +150,7 @@ export default async function HomePage() {
                 </h3>
                 <div className="space-y-5 sm:space-y-6">
                   {trendingArticles.map((art, i) => (
-                    <div key={art.id} className="flex gap-3 sm:gap-4 items-start">
+                    <div key={art.id} className="flex gap-2 sm:gap-4 items-start">
                       <span className="text-xl sm:text-2xl font-serif font-black text-gray-200 dark:text-slate-700 leading-none shrink-0 w-5 sm:w-6">
                         0{i + 1}
                       </span>
@@ -180,7 +180,7 @@ export default async function HomePage() {
               </h3>
               <div className="space-y-4 sm:space-y-5">
                 {activeWriters.map((wt) => (
-                  <div key={wt.id} className="flex items-center justify-between gap-4">
+                  <div key={wt.id} className="flex items-center justify-between gap-2 sm:gap-4">
                     <Link href={`/writer/${wt.username}`} className="flex items-center gap-3 group shrink min-w-0 flex-1 sm:flex-initial sm:max-w-[70%]">
                       <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 dark:bg-slate-800 shrink-0 border border-gray-150 dark:border-slate-800">
                         <img 

@@ -162,7 +162,7 @@ export default async function ArticlePage({
       )}
 
       {/* Article body */}
-      <div className="overflow-hidden">
+      <div className="overflow-x-hidden">
         <div
           className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-a:text-emerald-600 prose-img:rounded-xl prose-img:max-w-full prose-table:w-full prose-table:overflow-x-auto"
           dangerouslySetInnerHTML={{ __html: article.body || '' }}
