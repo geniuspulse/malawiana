@@ -125,7 +125,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-gray-50/50 dark:bg-slate-950/10">
-      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-150 dark:border-slate-800 p-8">
+      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-150 dark:border-slate-800 p-5 sm:p-8">
         {/* Progress Bar */}
         <div className="flex gap-2 mb-8">
           <div className={`h-1.5 flex-1 rounded-full ${step >= 1 ? 'bg-emerald-600' : 'bg-gray-100 dark:bg-slate-800'}`} />

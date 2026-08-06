@@ -85,7 +85,7 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-gray-50 dark:bg-slate-950/20">
-      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-150 dark:border-slate-800 p-8">
+      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-150 dark:border-slate-800 p-5 sm:p-8">
         {/* Malawiana branding header */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 mb-3">

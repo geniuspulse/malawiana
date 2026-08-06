@@ -140,7 +140,7 @@ export default async function HomePage() {
           </div>
 
           {/* Sidebar (Right) */}
-          <div className="lg:col-span-4 space-y-12">
+          <div className="lg:col-span-4 space-y-8 sm:space-y-12">
             {/* Trending Sidebar */}
             {trendingArticles.length > 0 && (
               <div>
@@ -148,10 +148,10 @@ export default async function HomePage() {
                   <TrendingUp size={16} className="text-emerald-600" />
                   Trending on Malawiana
                 </h3>
-                <div className="space-y-6">
+                <div className="space-y-5 sm:space-y-6">
                   {trendingArticles.map((art, i) => (
-                    <div key={art.id} className="flex gap-4 items-start">
-                      <span className="text-2xl font-serif font-black text-gray-200 dark:text-slate-700 leading-none shrink-0 w-6">
+                    <div key={art.id} className="flex gap-3 sm:gap-4 items-start">
+                      <span className="text-xl sm:text-2xl font-serif font-black text-gray-200 dark:text-slate-700 leading-none shrink-0 w-5 sm:w-6">
                         0{i + 1}
                       </span>
                       <div className="flex-1 min-w-0">
@@ -178,10 +178,10 @@ export default async function HomePage() {
                 <UserPlus size={16} className="text-emerald-600" />
                 Who to Follow
               </h3>
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {activeWriters.map((wt) => (
                   <div key={wt.id} className="flex items-center justify-between gap-4">
-                    <Link href={`/writer/${wt.username}`} className="flex items-center gap-3 group shrink-0 max-w-[75%] sm:max-w-[70%]">
+                    <Link href={`/writer/${wt.username}`} className="flex items-center gap-3 group shrink min-w-0 flex-1 sm:flex-initial sm:max-w-[70%]">
                       <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 dark:bg-slate-800 shrink-0 border border-gray-150 dark:border-slate-800">
                         <img 
                           src={wt.avatar_url || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(wt.display_name)}`} 
@@ -200,7 +200,7 @@ export default async function HomePage() {
                     </Link>
                     <Link 
                       href={`/writer/${wt.username}`} 
-                      className="border border-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-semibold px-3 py-1 rounded-full text-[11px] transition-colors whitespace-nowrap"
+                      className="border border-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-semibold px-2.5 sm:px-3 py-1 rounded-full text-[11px] transition-colors whitespace-nowrap shrink-0"
                     >
                       Follow
                     </Link>
