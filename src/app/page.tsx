@@ -128,7 +128,7 @@ export default async function HomePage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-20 text-gray-450 border border-dashed border-gray-200 dark:border-slate-800 rounded-2xl">
+              <div className="text-center py-14 sm:py-20 px-4 text-gray-450 border border-dashed border-gray-200 dark:border-slate-800 rounded-2xl">
                 <Rss size={44} className="mx-auto mb-4 text-gray-300 dark:text-slate-700" />
                 <p className="font-medium text-gray-600 dark:text-gray-400">No stories found.</p>
                 <p className="text-xs text-gray-400 mt-1 max-w-sm mx-auto">Be the first to share a story with the world of Malawiana!</p>

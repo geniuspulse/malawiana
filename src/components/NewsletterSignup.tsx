@@ -18,29 +18,31 @@ export default function NewsletterSignup() {
   }
 
   return (
-    <section className="bg-blue-700 dark:bg-blue-900 py-14 px-4">
+    <div className="bg-emerald-700 dark:bg-emerald-900 rounded-2xl py-10 px-5 sm:py-12 sm:px-8">
       <div className="max-w-2xl mx-auto text-center">
-        <Mail size={36} className="text-blue-200 mx-auto mb-4" />
-        <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Stay Informed</h2>
-        <p className="text-blue-200 mb-8">Malawi's latest news delivered straight to your inbox. No spam, just credible journalism.</p>
+        <Mail size={32} className="text-emerald-200 mx-auto mb-4" />
+        <h2 className="text-xl sm:text-2xl font-black text-white mb-2.5">Never Miss a Story</h2>
+        <p className="text-emerald-100 text-sm mb-6 leading-relaxed">
+          Fresh stories from Malawian writers, straight to your inbox. No spam — just great storytelling.
+        </p>
         {status === 'success' ? (
-          <div className="flex items-center justify-center gap-3 text-white">
-            <Check size={24} /><span className="text-lg font-semibold">You're subscribed! Welcome to Malawiana.</span>
+          <div className="flex items-center justify-center gap-2.5 text-white">
+            <Check size={22} /><span className="text-base font-semibold">You're subscribed! Welcome to Malawiana.</span>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
             <input type="text" placeholder="Your name" value={name} onChange={e => setName(e.target.value)}
-              className="flex-1 px-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm" />
+              className="w-full px-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm" />
             <input type="email" required placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)}
-              className="flex-1 px-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm" />
+              className="w-full px-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm" />
             <button type="submit" disabled={status === 'loading'}
-              className="px-6 py-3 bg-white text-blue-700 font-bold rounded-xl hover:bg-blue-50 transition-colors text-sm disabled:opacity-60 whitespace-nowrap">
+              className="w-full px-6 py-3 bg-white text-emerald-700 font-bold rounded-xl hover:bg-emerald-50 transition-colors text-sm disabled:opacity-60">
               {status === 'loading' ? 'Subscribing...' : 'Subscribe Free'}
             </button>
           </form>
         )}
-        {message && <p className="text-red-300 text-sm mt-2">{message}</p>}
+        {message && <p className="text-red-200 text-sm mt-2">{message}</p>}
       </div>
-    </section>
+    </div>
   )
 }
